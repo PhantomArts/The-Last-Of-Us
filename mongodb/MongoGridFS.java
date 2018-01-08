@@ -22,12 +22,12 @@ public class MongoGridFS
 	public static void main(String[] args) throws IOException 
 	{
 		MongoClient mongoClient = new MongoClient();
-		DB db = mongoClient.getDB("mydb1");
-		DBCollection collection = db.getCollection("mydb1");
+		DB db = mongoClient.getDB("db");
+		DBCollection collection = db.getCollection("collection");
 		
 		// ===========================================================================================================
 		//GridFS input file into Mongo
-		File inputFileLocation = new File("C:\\Users\\ITA-Mark\\Desktop\\testdoc.docx");
+		File inputFileLocation = new File("testdoc.docx");
 		GridFS gfsConnection = new GridFS(db, "file");
 		GridFSInputFile gfsFile = gfsConnection.createFile(inputFileLocation);
 		gfsFile.save();
@@ -47,7 +47,7 @@ public class MongoGridFS
 		
 		GridFS retrieveGFSFile = new GridFS(db, "file");
 		GridFSDBFile fileOutput = retrieveGFSFile.findOne((ObjectId) retrieveDocument.get("_id"));			// retrieve attachment file
-		fileOutput.writeTo("C:\\Users\\ITA-Mark\\Desktop\\" + (String) retrieveDocument.get("filename"));	// output file to destination
+		fileOutput.writeTo("(String) retrieveDocument.get("filename"));	// output file to destination
 		System.out.println("Completed");
 		
 	}
